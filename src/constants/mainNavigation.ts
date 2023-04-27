@@ -1,39 +1,22 @@
-import searchIcon from '../icons/search.png'
-import clockIcon from '../icons/clock.png'
-import moviesIcon from '../icons/movies.png'
-import genresIcon from '../icons/genres.png'
-import showsIcon from '../icons/shows.png'
-import homeIcon from '../icons/home.png'
-
 export const MAIN_NAVIGATION = [
   {
-    icon: searchIcon,
-    label: 'Search',
-    path: '/search',
+    label: 'Новости',
+    path: '/news',
   },
   {
-    icon: homeIcon,
-    label: 'Home',
-    path: '/',
+    label: 'О проекте',
+    path: '/about-us',
   },
   {
-    icon: showsIcon,
-    label: 'TV Shows',
-    path: '/tv-shows',
+    label: 'Прямой эфир',
+    path: '/live',
   },
   {
-    icon: moviesIcon,
-    label: 'Movies',
-    path: '/movies',
+    label: 'FAQ',
+    path: '/faq',
   },
   {
-    icon: genresIcon,
-    label: 'Genres',
-    path: '/genres',
+    label: 'Контакты ',
+    path: '/contact-us',
   },
-  {
-    icon: clockIcon,
-    label: 'Watch Later',
-    path: '/watch-later',
-  },  
 ]

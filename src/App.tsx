@@ -1,23 +1,19 @@
-import { ThemeProvider } from '@mui/material/styles'
-import { BrowserRouter, Switch } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import theme from './constants/colors'
-import './App.css'
+import { ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter } from 'react-router-dom';
 
-import MainLayout from './layout/MainLayout'
-import { store } from './store'
+import theme from './constants/colors';
+import './App.css';
+import './i18n';
+
+import MainLayout from './layout/MainLayout';
 
 function App() {
   return (
-    <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Switch>
-          <ThemeProvider theme={theme}>
-            <MainLayout />
-          </ThemeProvider>
-        </Switch>
+        <MainLayout />
       </BrowserRouter>
-    </Provider>
+    </ThemeProvider>
   )
 }
 

@@ -2,16 +2,10 @@ import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 export const COLORS = {
   primary: {
-    main: '#3b486d',
+    main: 'rgba(15, 128, 134, 1)',
   },
   secondary: {
-    main: '#f50057',
-  },
-  background: {
-    paper: '#040404',
-  },
-  text: {
-    primary: '#f1f1f1',
+    main: 'rgba(254, 124, 0, 1)',
   },
 }
 

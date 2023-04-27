@@ -1,57 +1,89 @@
-import { Grid, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Carousel } from '../components/Carousel'
-import { FeaturedMovie } from '../components/FeaturedMovie'
-import { MovieCard } from '../components/MovieCard'
-import { selectCurrentMovie, selectTrendingList, setSelected } from '../features/moviesSlice'
-import featuredImage from '../images/featuredImage.png'
+import { Grid, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
+import { Carousel } from '../components/Carousel';
+import { HBSlider } from '../components/HBSlider';
+import Accordions from '../components/Accordions';
+import TopicCard from '../components/TopicCard';
+import SubjectItem from '../components/SubjectItem';
+
+import { FREQUENTLY_ASKED_QUESTION } from '../constants/faq';
+import { MAIN_TOPICS } from '../constants/topics';
+import { MAIN_SUBJECTS } from '../constants/subjects';
+
+import TopicsBgImg from '../images/topics_bg.png';
 
 const useStyles = makeStyles({
-  trendingNowWrapper: {
-    padding: '0 30px',
-    position: 'relative',
-    color: '#fff',
-    background: 'radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(10, 10, 10) 90.2%)',
+  sectionTitle: {
+    '&.MuiTypography-root': {
+      marginBottom: '20px',
+      color: 'rgba(19, 129, 136, 1)',
+      fontSize: '48px',
+      lineHeight: '56px',
+      fontWeight: 700,
+    }
   },
-  title: {
-    position: 'absolute',
-    top: '-70px',
+  subjectSection: {
+    padding: '30px',
   },
-})
+  faqSection: {
+      padding: '30px',
+      background: '#E8EAE9',
+  },
+  topicsSection: {
+    padding: '30px',
+    backgroundImage: `url(${TopicsBgImg})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'top center',
+  }
+});
 
 const Home = () => {
-  const dispatch = useDispatch()
+  const classes = useStyles();
 
-  const trendingNow = useSelector(selectTrendingList)
-  const currentMovie = useSelector(selectCurrentMovie)
-  const classes = useStyles()
-  const onMovieClick = useCallback(
-    (id: string) => {
-      dispatch(setSelected(id))
-    },
-    [dispatch],
-  )
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', flex: '1 1 auto' }}>
-      <FeaturedMovie featureMovieBg={featuredImage} {...currentMovie} />
-      <Grid className={classes.trendingNowWrapper}>
-        <Grid item xs={12}>
-          <Typography variant="h4" component="h2" className={classes.title}>
-            Trending Now
+    <Grid container justifyContent="center" data-ui-name="home">
+      <Grid container>
+        <HBSlider />
+      </Grid>
+
+      <Grid container justifyContent="center" className={classes.subjectSection}>
+        <Grid container maxWidth="lg">
+          <Typography className={classes.sectionTitle}>
+            Предметы
           </Typography>
+
+          <Grid container justifyContent="space-evenly">
+            {MAIN_SUBJECTS.map((subject: any) => (
+              <SubjectItem key={subject.label} {...subject} />
+            ))}
+          </Grid>
         </Grid>
-        <div style={{}}>
+      </Grid>
+
+      <Grid container justifyContent="center" className={classes.faqSection}>
+        <Grid container maxWidth="lg">
+          <Typography className={classes.sectionTitle}>
+            Вопросы о проекте
+          </Typography>
+          <Accordions data={FREQUENTLY_ASKED_QUESTION} />
+        </Grid>
+      </Grid>
+
+      <Grid container justifyContent="center" className={classes.topicsSection}>
+        <Grid container maxWidth="lg" flexDirection="column">
+          <Typography className={classes.sectionTitle}>
+            Темы
+          </Typography>
+          
           <Carousel>
-            {trendingNow.map((movie) => (
-              <MovieCard onClick={onMovieClick} {...movie} />
+            {MAIN_TOPICS.map((card: any) => (
+              <TopicCard key={card.title} {...card} />
             ))}
           </Carousel>
-        </div>
+        </Grid>
       </Grid>
-    </div>
+    </Grid>
   )
 }
 

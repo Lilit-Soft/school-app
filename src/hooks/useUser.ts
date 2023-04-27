@@ -4,7 +4,5 @@
  * later on user data can be used by this hook
  */
 export const useUser = () => {
-  return {
-    fullName: 'Daniel',
-  }
+  return { }
 }
